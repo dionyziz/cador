@@ -5,7 +5,7 @@ Cador is a simple Vilundo chat server in C++.
 Find the protocol specficiation at vilundo.pdf within the repository.
 
 # License
-See the file LICENSE in the repository.
+The MIT license. See the file LICENSE in the repository.
 
 # Building
 Use 'make cador'. You will need to install the develoment headers of the following libraries:
