@@ -6,7 +6,7 @@
 
 * Creation Date : 21-11-2011
 
-* Last Modified : Mon 21 Nov 2011 03:46:48 PM EET
+* Last Modified : Mon 21 Nov 2011 03:54:41 PM EET
 
 * Created By : Greg Liras <gregliras@gmail.com>
 
@@ -41,6 +41,8 @@ class rsaHandler() : public Cador_Extension
   public:
     rsaHandler();
     ~rsaHandler();
+    void set_public_remote_key(RSA *public_remote_key);
+    RSA *get_public_key();
     std::string encrypt_data(std::string data);
     std::string decrypr_data(std::string data);
 }

@@ -6,7 +6,7 @@
 
  * Creation Date : 21-11-2011
 
- * Last Modified : Mon 21 Nov 2011 03:46:13 PM EET
+ * Last Modified : Mon 21 Nov 2011 03:54:24 PM EET
 
  * Created By : Greg Liras <gregliras@gmail.com>
 
@@ -36,6 +36,14 @@ rsaHandler::~rsaHandler()
   RSA_free(priv_key);
   RSA_free(pub_key);
   RSA_free(pub_remote_key);
+}
+RSA *rsaHandler::get_public_key()
+{
+  return this->pub_key;
+}
+void rsaHandler::set_public_remote_key(RSA *public_remote_key)
+{
+  this->pub_remote_key = public_remote_key;
 }
 std::string rsaHandler::encrypt_data(std::string data)
 {
