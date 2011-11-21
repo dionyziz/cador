@@ -6,13 +6,37 @@
 
  * Creation Date : 21-11-2011
 
- * Last Modified : Mon 21 Nov 2011 02:07:56 PM EET
+ * Last Modified : Mon 21 Nov 2011 03:46:13 PM EET
 
  * Created By : Greg Liras <gregliras@gmail.com>
 
  _._._._._._._._._._._._._._._._._._._._._.*/
 #include "rsaHandler.h"
 
+rsaHandler::rsaHandler()
+{
+
+  int num = 8192;   //needs to be > 1024 to be considered secure;
+  int e = 65537;    //exponent
+  //RSA_ADD(buf,num,entropy); //not needed since we have /dev/urandom
+  pub_key = RSA_generate_key(num,e,NULL,NULL);
+  if (pub_key == NULL)
+  {
+    Warning << "Failed to initialize pub_key";
+  }
+  //RSA_ADD(buf,num,entropy); //not needed since we have /dev/urandom
+  priv_key = RSA_generate_key(num,e,NULL,NULL);
+  if (priv_key == NULL)
+  {
+    Warning << "Failed to initialize priv_key";
+  }
+}
+rsaHandler::~rsaHandler()
+{
+  RSA_free(priv_key);
+  RSA_free(pub_key);
+  RSA_free(pub_remote_key);
+}
 std::string rsaHandler::encrypt_data(std::string data)
 {
   unsigned char *encrypted =  (unsigned char *)malloc(RSA_size(this->pub_remote_key));
